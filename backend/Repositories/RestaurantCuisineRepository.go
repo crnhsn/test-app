@@ -39,7 +39,7 @@ func (repo *RestaurantCuisineRepository) Get(restaurantIds []string) (map[string
 	}
 
 	if len(cuisineToRestaurantIds) == 0 {
-		return nil, errors.New("No valid restaurant IDs found")
+		return nil, errors.New("no valid restaurant IDs found")
 	}
 
 	return cuisineToRestaurantIds, nil

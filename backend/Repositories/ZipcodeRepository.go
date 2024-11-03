@@ -10,9 +10,7 @@ type ZipcodeRepository struct {
 
 func NewZipcodeRepository(data map[string][]string) *ZipcodeRepository {
 
-	var repo *ZipcodeRepository
-
-	repo = &ZipcodeRepository{
+	repo := &ZipcodeRepository{
 		zipCodeToRestaurants: data,
 	}
 
@@ -28,5 +26,5 @@ func (repo *ZipcodeRepository) Get(zipcode string) ([]string, error) {
 		return restaurantIds, nil
 	}
 
-	return nil, errors.New("Zip code not found in data") // todo: put all of this in an ErrorCodes object
+	return nil, errors.New("zip code not found in data") // todo: put all of this in an ErrorCodes object
 }
