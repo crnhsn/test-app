@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	repositories "test-app/backend/Repositories"
 	"test-app/backend/models"
 )
@@ -49,5 +50,10 @@ func main() {
 	healthRepo := repositories.NewHealthRatingsRepository(healthData)
 	cuisineRepo := repositories.NewRestaurantCuisineRepository(cuisineData)
 	zipcodeRepo := repositories.NewZipcodeRepository(zipcodeData)
+
+	fmt.Println(restaurantRepo.Get("1"))
+	fmt.Println(healthRepo.Get("1"))
+	fmt.Println(cuisineRepo.Get([]string{"1"}))
+	fmt.Println(zipcodeRepo.Get("12345"))
 
 }
