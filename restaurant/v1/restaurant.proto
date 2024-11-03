@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package restaurant.v1;
+
+option go_package = "test-app/gen/restaurant/v1;restaurantv1";
+
+message GetRestaurantsRequest {
+    repeated string cuisines = 1; 
+    repeated string zipcodes = 2; 
+    string health_rating = 3;  
+}
+
+message RestaurantInfo {
+    string id = 1; 
+    string name = 2; 
+    string address = 3; 
+    string description = 4; 
+    int32 user_rating = 5; 
+    string health_rating = 6; 
+    repeated string cuisines = 7; 
+}
+
+message GetRestaurantsResponse {
+    repeated RestaurantInfo restaurants = 1; 
+}
+
+service RestaurantService {
+  rpc GetRestaurants(GetRestaurantsRequest) returns (GetRestaurantsResponse) {}
+}
