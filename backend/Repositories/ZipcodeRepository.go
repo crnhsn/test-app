@@ -20,9 +20,9 @@ func NewZipcodeRepository(data map[string][]string) *ZipcodeRepository {
 
 }
 
-func (repo *ZipcodeRepository) Get(key string) ([]string, error) {
+func (repo *ZipcodeRepository) Get(zipcode string) ([]string, error) {
 
-	restaurantIds, exists := repo.zipCodeToRestaurants[key]
+	restaurantIds, exists := repo.zipCodeToRestaurants[zipcode]
 
 	if exists {
 		return restaurantIds, nil
