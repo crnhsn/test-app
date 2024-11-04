@@ -110,6 +110,8 @@ func (restaurantService *RestaurantService) GetRestaurants(ctx context.Context,
 			}
 		}
 
+	} else {
+		healthRatingFilteredIds = filteredRestaurantIds
 	}
 
 	if len(healthRatingFilteredIds) == 0 {
