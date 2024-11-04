@@ -22,9 +22,9 @@ function App() {
 
   const getRestaurants = async () => {
     const request = new GetRestaurantsRequest({
-      zipcodes: ["10001"],  
-      cuisines: ["Italian"], 
-      healthRating: "A",    
+      zipcodes: ["10001", "12345", "34567"],  
+      cuisines: [], 
+      healthRating: "D",    
     });
 
     try {
@@ -42,7 +42,25 @@ function App() {
 
   return (
    <div>
-    hello world
+   <ul>
+        {restaurants.map(({ id, name, healthRating, description, userRating }) => (
+          <li key={id}>
+            {name} 
+            <p>
+            User Rating: {userRating}
+            </p>
+           
+            <p>
+            {description}
+            </p>
+            
+            <p>
+              Health Rating: {healthRating}
+            </p>
+            
+          </li>
+        ))}
+      </ul>
    </div>
   )
 }
