@@ -142,6 +142,24 @@ func (restaurantService *RestaurantService) GetRestaurants(ctx context.Context,
 
 }
 
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, connect-protocol-version") // Include the required header
+
+		// Handle preflight request
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		// Call the next handler
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	// Mock data
 	restaurantData := map[string]*restaurantv1.RestaurantInfo{
@@ -199,7 +217,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	path, handler := restaurantv1connect.NewRestaurantServiceHandler(restaurantService)
-	mux.Handle(path, handler)
+	mux.Handle(path, corsMiddleware(handler))
 
 	http.ListenAndServe(
 		"localhost:8080",
