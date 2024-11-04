@@ -42,8 +42,7 @@ func (repo *ZipcodeRepository) GetFromMany(zipcodes []string) (map[string]bool, 
 		// results in a single zipcode's not necessarily getting resolved
 		// better to return some results to the user if possible than to return nothing
 
-		// if there's only a single zipcode and it errors out, then the rest of the
-		// function will handle that
+		// if there's only a single zipcode and it errors out, then the caller should handle that
 
 		// in a more developed version of this, we'd use a proximity based location service
 		// instead of exact zipcode match, which would alleviate this issue,
